@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Microsoft.Azure.Devices.Device>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.First().Id)</th>
+        <th>@Html.DisplayNameFor(model => model.First().Status)</th>
+        <th>@Html.DisplayNameFor(model => model.First().LastActivityTime)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastActivityTime)
+            </td>
+            <td>
+                @Html.ActionLink("Publish", "Publish", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
