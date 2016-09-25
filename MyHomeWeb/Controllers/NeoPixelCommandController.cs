@@ -3,12 +3,9 @@ using MyHomeWeb.Models;
 using MyHomeWeb.Providers;
 using MyHomeWeb.Repositories;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace MyHomeWeb.Controllers
@@ -51,7 +48,7 @@ namespace MyHomeWeb.Controllers
         }
 
         [HttpPost]
-        public async System.Threading.Tasks.Task<ActionResult> Publish(string id, NeoPixelCommand request)
+        public async Task<ActionResult> Publish(string id, NeoPixelCommand request)
         {
             Debug.WriteLine(JsonConvert.SerializeObject(request));
             request.DeviceId = id;
