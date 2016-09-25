@@ -58,7 +58,7 @@ namespace MyHomeWeb.Controllers
 
             // FlashMessageでフォームデータを戻すのは微妙に気持ち悪い気はする
             TempData["NeoPixelCommand"] = request;
-            return RedirectToAction("Publish", "NeoPixelCommand", id);
+            return RedirectToAction("Publish", "NeoPixelCommand", new { id = id });
         }
     }
 }
