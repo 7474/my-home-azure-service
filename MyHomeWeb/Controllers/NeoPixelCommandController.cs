@@ -38,7 +38,8 @@ namespace MyHomeWeb.Controllers
 
         public ActionResult Publish(string id)
         {
-            var command = new NeoPixelCommand()
+            var flashCommand = TempData["NeoPixelCommand"] as NeoPixelCommand;
+            var command = flashCommand ?? new NeoPixelCommand()
             {
                 FlashMode = FlashMode.StartToEnd,
                 DeviceId = id,
@@ -57,6 +58,9 @@ namespace MyHomeWeb.Controllers
 
             // XXX Validate? Fooooh!
             await messageProvider.SendCommand(request);
+
+            // FlashMessageでフォームデータを戻すのは微妙に気持ち悪い気はする
+            TempData["NeoPixelCommand"] = request;
             return RedirectToAction("Publish", "NeoPixelCommand", id);
         }
     }
